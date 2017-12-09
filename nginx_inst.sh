@@ -17,7 +17,9 @@ yum install openssl-devel pcre-devel -y
 tar xf ${NGINX_FILE} && cd ${NGINX_DIR}
 
 useradd -u 222 -s /sbin/nologin www -M
-./configure --user=www --group=www
+./configure --user=www --group=www \
+	--with-http_stub_status_module \
+	--with-http_ssl_module
 
 [ $? -eq 0 ] && make && make install &&\
 	echo -e "\033[41m${NGINX_FILE}\033[0m nginx install okkk"
