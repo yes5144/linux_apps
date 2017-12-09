@@ -1,0 +1,25 @@
+# cat /etc/my.cnf 
+[mysqld]
+datadir = /data/mydata
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+symbolic-links=0
+log-bin=mysql-bin
+#
+server-id=2
+auto_increment_offset=2
+
+auto_increment_increment=2
+
+[mysqld_safe]
+log_error=/var/log/mysqld.err
+pid-file=/var/run/mysqld/mysqld.pid
+
+master-host = 192.168.204.139
+master-user = tongbu
+master-pass = 123123
+master-port = 3306
+master-connect-retry = 60
+
+replicate-do-db=all
+
