@@ -10,6 +10,9 @@ NGINX_FILE=${NGINX_DIR}.tar.gz
 NGINX_URL=http://mirrors.sohu.com/nginx/${NGINX_FILE}
 # http://mirrors.sohu.com/nginx/nginx-1.4.7.tar.gz
 
+ping -w 2 www.baidu.com
+[ $? -ne 0 ] && echo -e "\033[41m check network \033[0m" && exit
+
 yum install openssl-devel pcre-devel -y
 
 [ ! -f ${NGINX_FILE} ] && wget ${NGINX_URL}
@@ -25,4 +28,13 @@ useradd -u 222 -s /sbin/nologin www -M
 	echo -e "\033[41m${NGINX_FILE}\033[0m nginx install okkk"
 
 # make sure start with system
-# echo "/usr/local/nginx/sbin/nginx" >> /etc/rc.local
+echo "/usr/local/nginx/sbin/nginx" >> /etc/rc.local
+
+# mkdir vhosts
+NGINX_CONF_DIR=/usr/local/nginx/conf/
+mkdir -p ${NGINX_CONF_DIR}/vhosts
+
+sed -n '35,80p' ${NGINX_CONF_DIR}/nginx.conf.default > ${NGINX_CONF_DIR}/vhosts/myword.conf
+
+sed '31,37 s/#//g' ${NGINX_CONF_DIR}/vhosts/myword.conf
+
