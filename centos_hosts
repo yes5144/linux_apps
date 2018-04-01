@@ -1,0 +1,21 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+192.168.204.140 slb140
+192.168.204.141 slb141
+
+192.168.204.145 fpm145
+192.168.204.146 fpm146
+192.168.204.147 fpm147
+
+192.168.204.139 m_mysql139
+192.168.204.138 s_mysql138
+
+192.168.204.150 nfs150
+192.168.204.160 bak160
+
+192.168.204.171 memcached171
+
+192.168.204.222 zabbix222
+192.168.204.111 manager111
+
