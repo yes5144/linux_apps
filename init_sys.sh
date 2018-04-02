@@ -13,7 +13,7 @@ wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo
 
 # 4, yum some tools
 yum groupinstall "Development tools" "Compatibility libraries" "Chinese Support [zh]" -y
-yum install wget vim man ntpdate lrzsz dos2unix tree -y
+yum install tree wget vim man ntpdate lrzsz dos2unix tree -y
 
 # 5, sync time
 ntpdate times.aliyun.com
