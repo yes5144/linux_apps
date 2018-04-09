@@ -1,0 +1,18 @@
+# cat /etc/my.cnf 
+# this is for mysql 5.1, i dont think if it still works on 5.5
+[mysqld]
+
+datadir = /data/mydata
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+symbolic-links=0
+log-bin=mysql-bin
+server-id=1
+auto_increment_offset=1
+auto_increment_increment=2
+
+[mysqld_safe]
+log_error=/var/log/mysqld.err
+pid-file=/var/run/mysqld/mysqld.pid
+replicate-do-db=all
+
