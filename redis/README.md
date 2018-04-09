@@ -1,5 +1,7 @@
 # this is redis
 
+**redis** 是一个key-value存储系统，与memcached类似，但是解决了断电后数据完全丢失的现象。支持数据类型有string，lists，sets，zsets。这些数据类型都支持push/pop，add/remove以及取交集、并集、差集等操作，对这些操作都是原子性的，redis还支持各种不同的排序能力。
+
 ## 下载和安装
 
 ```
@@ -86,3 +88,209 @@ Activatehashing	重新hash
 
 ```
 
+# 数据类型
+
+## 字符型：string
+
+```
+:6379> set name alex
+:6379> set name channel
+
+:6379> setnx name jjjjj
+
+# setnx设置key对应的值为string类型的value，如果key存在，返回0；
+# nx就是not exist的意思，不存在则返回1
+
+:6379> setex haricolor 10 red
+# setex设置key对应的值string类型的value，并指定键值对应的有效期
+
+# setrange
+
+# mset
+
+# get
+
+# getset
+
+# mget
+
+# incr
+# decr
+
+# incrby
+# decrby
+
+# append
+
+# strlen
+
+```
+
+### hashes 类型
+
+redis hash是一个string类型的field和value的映射表。
+hash特别适合于存储对象。相较于将对象的每个字段存成单个string的类型。将一个对象存储在hash类型中会占用更少的内存，并且可以更方便的存取整个对象。
+
+```
+# hset
+
+# hget
+
+# hmset
+
+# hmget
+
+# hincr
+# hincrby
+
+# hexists
+
+# hlen
+
+# hdel
+
+# hkeys
+
+# hvals
+
+# hgetall
+
+```
+
+### lists 类型
+
+**lists** 是一个链表结构，主要功能是push、pop，获取一个范围的所有值等等，操作中key理解为链表的名字。redis的list类型其实就是一个每个子元素都是string类型的双向链表。我们可以通过push、pop操作从链表的头部或者尾部添加或删除元素，这样list既可以作为栈，又可以作为队列。
+
+```
+# lpush
+
+# lrange
+
+# linsert
+
+# rpush
+
+# lset
+
+# lrange
+ 
+# lrem
+
+# ltrim
+
+# lpop
+
+# rpoplpush
+
+# lindex
+
+```
+
+### sets类型
+
+**set**是集合，它是string类型的无序集合。set是通过hash table实现的，添加删除和查找的复杂度都是0|1。对集合我们可以取并集、交集、差集。通过这些操作我们可以实现sns中的好友推荐和blog的tag功能
+
+```
+# sadd
+
+# smemebers
+
+# srem
+
+# spop
+
+# sdiff
+
+# sdiffstore
+
+# sinter
+
+# sinterstore
+
+# sunion
+
+# sunionstore
+
+# smove
+
+# scard
+
+# sismember
+
+# srandmember
+
+```
+
+### sorted sets类型
+
+**sorted set**是set的一个升级版本，它是set的基础上增加了一个顺序属性，这一属性在添加修改元素的时候可以指定，每次指定后，zset会自动重新按新的值调整顺序。可以理解为有两列的mysql表，一列存value，一列存顺序。操作中key可以理解为zset的名字。
+
+```
+# zadd
+
+# zrange
+
+# zrem
+
+# zincrby
+
+# zrank
+
+# zrevrank
+
+# zrangebyscore
+
+# zcount
+
+# zcard
+
+# zremrangebyrank
+
+# zremrangebyscore
+
+```
+
+### redis 常用的命令
+
+redis提供了丰富的命令对数据库和各种数据库类型进行操作
+这些命令在linux终端使用
+
+```
+
+# 键值相关
+keys *
+
+del name
+
+expire addr 10
+
+ttl addr
+
+persist
+
+rename
+
+type
+
+ping
+
+echo
+
+select
+
+quit
+
+# 服务器相关命令
+
+config get dir
+config get *
+
+dbsize
+
+flushdb
+
+dbsize
+
+flushdb
+
+```
