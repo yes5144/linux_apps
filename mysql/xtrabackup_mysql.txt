@@ -1,0 +1,48 @@
+# this is a example about xtrabackup
+#
+# coding:utf8
+# 步骤
+# 全量备份 -> 增量1 -> 增量2 -> 
+
+# 全量备份00，假设全量文件是/backup_file/00
+innobackupex --user=root --password='123123' /backup_file/
+
+# 增量1, 文件是/backup_file/11
+innobackupex --incremental /backup_file --incremental-basedir=/backup_file/00
+
+# 增量2, 文件是/backup_file/22
+innobackupex --incremental /backup_file --incremental-basedir=/backup_file/11
+
+##################
+# 整合# 
+# 准备全量00
+innobackupex --apply-log --redo-only /backup_file/00
+
+# 准备11
+innobackupex --apply-log --redo-only /backup_file/00/ --incremental-dir=/backup_file/11
+
+# 准备22
+innobackupex --apply-log --redo-only /backup_file/00/ --incremental-dir=/backup_file/22
+
+#################
+#
+# 恢复数据
+innobackupex --copy-back /backup_file/00
+
+# 修改属主、属组
+chown -R mysql.mysql /usr/local/mysql/data
+
+# 启动mysql
+/etc/init.d/mysqld start
+
+#### 5，恢复binlog中的部分文件
+
+mysqlbinlog mysql-bin.000002 >/tmp/abc.sql
+#
+# 暂时关闭binlog记录
+mysql> set sql_log_bin=0;
+mysql> source /tmp/abc.sql;
+#
+# 恢复完成，打开binlog记录
+mysql> set sql_log_bin=1
+
