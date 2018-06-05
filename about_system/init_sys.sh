@@ -8,12 +8,12 @@ chkconfig iptables off
 setenforce 0
 sed -i /SELINUX/s/enforcing/disabled/g /etc/selinux/config
 
-# 3, configure epel aliyun
-wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo
-
-# 4, yum some tools
+# 3, yum some tools
 yum groupinstall "Development tools" "Compatibility libraries" "Chinese Support [zh]" -y
 yum install tree wget vim man ntpdate lrzsz dos2unix tree -y
+
+# 4, configure epel aliyun
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo
 
 # 5, sync time
 ntpdate times.aliyun.com
