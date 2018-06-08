@@ -1,0 +1,30 @@
+1、Linux上的文件管理类命令都有哪些，其常用的使用方法及其相关示例演示。
+2、bash的工作特性之命令执行状态返回值和命令行展开所涉及的内容及其示例演示。
+3、请使用命令行展开功能来完成以下练习：
+   (1)、创建/tmp目录下的：a_c, a_d, b_c, b_d
+   (2)、创建/tmp/mylinux目录下的：
+mylinux/
+    ├── bin
+    ├── boot
+    │   └── grub
+    ├── dev
+    ├── etc
+    │   ├── rc.d
+    │   │   └── init.d
+    │   └── sysconfig
+    │       └── network-scripts
+    ├── lib
+    │   └── modules
+    ├── lib64
+    ├── proc
+    ├── sbin
+    ├── sys
+    ├── tmp
+    ├── usr
+    │   └── local
+    │       ├── bin
+    │       └── sbin
+    └── var
+        ├── lock
+        ├── log
+        └── run
